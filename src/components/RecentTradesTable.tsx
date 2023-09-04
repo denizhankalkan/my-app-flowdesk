@@ -1,4 +1,5 @@
 import React, { useState,useEffect } from 'react';
+import { StyledTable, SortIcon } from './StyledComponents';
 
 interface Trade {
   id: number;
@@ -16,9 +17,6 @@ export interface RecentTradesProps {
 type SortField = 'time' | 'price' | 'qty';
 
 const RecentTrades: React.FC<RecentTradesProps> = ({ data }) => {
-  console.log("data")
-
- 
   const [sortedTrades, setSortedTrades] = useState<Trade[]>([...data]);
   const [sortField, setSortField] = useState<SortField | null>(null);
 
@@ -54,11 +52,14 @@ const RecentTrades: React.FC<RecentTradesProps> = ({ data }) => {
     <div>
       <h2>Recent Trades</h2>
       {data ? (
-      <table>
+      <StyledTable>
         <thead>
           <tr>
             <th>ID</th>
-            <th onClick={() => sortTrades('price')}>Price</th>
+            <th onClick={() => sortTrades('price')}>
+                Price
+                {sortField === 'price' && <SortIcon>⬆️⬇️</SortIcon>}
+              </th>
             <th onClick={() => sortTrades('qty')}>Quantity</th>
             <th>Quote Quantity</th>
             <th onClick={() => sortTrades('time')}>Time</th>
@@ -79,7 +80,7 @@ const RecentTrades: React.FC<RecentTradesProps> = ({ data }) => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </StyledTable>
        ) : (
         <div>Loading...</div>
       )}

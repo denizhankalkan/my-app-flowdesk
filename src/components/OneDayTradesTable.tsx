@@ -28,7 +28,7 @@ interface Ticker24hrProps {
 }
 
 const Ticker24hr: React.FC<Ticker24hrProps> = ({ data }) => {
-  console.log("data")
+
   return (
     <div>
       <h2>Ticker 24hr Data</h2>

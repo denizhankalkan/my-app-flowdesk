@@ -8,24 +8,22 @@ import RecentTrades from './components/RecentTradesTable';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import backgroundImage from './asset/background.jpg';
-
-export const AppContainer = styled.div`
-  background-size: cover;
-  background-position: center;
-  min-height: 100vh;
-`;
+import { currencyPairs } from './configs/currencyPairs';
+import { AppContainer, Input, Dropdown, Button, InputContainer } from './components/StyledComponents';
 
 const App: React.FC = () => {
   const [currencyPair, setCurrencyPair] = useState('BTCUSDT');
   const [oneDayTrades, setOneDayTrades] = useState(null);
   const [recentTrades, setRecentTrades] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredPairs, setFilteredPairs] = useState(currencyPairs);
 
-    const dispatch = useDispatch();
-    const activeTable = useSelector((state: any) => state.table.activeTable);
+  const dispatch = useDispatch();
+  const activeTable = useSelector((state: any) => state.table.activeTable);
 
-    const handleTableChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-      dispatch(setActiveTable(e.target.value));
-    };
+  const handleTableChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    dispatch(setActiveTable(e.target.value));
+  };
 
   useEffect(() => {
     const ws = new WebSocket(`wss://stream.binance.com:9443/ws/${currencyPair.toLowerCase()}@ticker`);
@@ -44,21 +42,39 @@ const App: React.FC = () => {
     return () => {
       ws.close();
     };
+
   }, [currencyPair]);
+
+  useEffect(() => {
+    setFilteredPairs(
+      currencyPairs.filter((pair) => 
+        pair.label.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    );
+  }, [searchTerm]);
 
   return (
     <AppContainer>
      <Header />
-      <select onChange={(e) => setCurrencyPair(e.target.value)} value={currencyPair}>
-        <option value="BTCUSDT">BTCUSDT</option>
-        <option value="ETHUSDT">ETHUSDT</option>
-        <option value="XRPUSDT">XRPUSDT</option>
-      </select>
+     <InputContainer>
+      <Input 
+        type="text" 
+        placeholder="Search for a currency pair" 
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
 
-      <select onChange={handleTableChange}>
+      <Dropdown onChange={(e) => setCurrencyPair(e.target.value)} value={currencyPair}>
+        {filteredPairs.map((pair, index) => (
+          <option key={index} value={pair.value}>{pair.label}</option>
+        ))}
+      </Dropdown>
+
+      <Dropdown onChange={handleTableChange}>
         <option value="RECENT_TRADES">Recent Trades</option>
         <option value="TICKER_24H">24h Ticker Data</option> 
-      </select>
+      </Dropdown>
+      </InputContainer>
 
       {activeTable === 'RECENT_TRADES' && recentTrades.length > 0 && <div key={currencyPair}> <RecentTrades data={recentTrades} /></div>}
       {activeTable === 'TICKER_24H' && oneDayTrades !== null && <div> <OneDayTrades data={oneDayTrades} /> </div>}
