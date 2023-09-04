@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 
 interface Trade {
   id: number;
@@ -16,8 +16,15 @@ export interface RecentTradesProps {
 type SortField = 'time' | 'price' | 'qty';
 
 const RecentTrades: React.FC<RecentTradesProps> = ({ data }) => {
+  console.log("data")
+
+ 
   const [sortedTrades, setSortedTrades] = useState<Trade[]>([...data]);
   const [sortField, setSortField] = useState<SortField | null>(null);
+
+  useEffect(() => {
+    setSortedTrades([...data]);
+  }, [data]);
 
   const sortTrades = (field: SortField) => {
     if (sortField === field) {
@@ -43,10 +50,10 @@ const RecentTrades: React.FC<RecentTradesProps> = ({ data }) => {
     setSortField(field);
   };
   
-
   return (
     <div>
       <h2>Recent Trades</h2>
+      {data ? (
       <table>
         <thead>
           <tr>
@@ -73,6 +80,9 @@ const RecentTrades: React.FC<RecentTradesProps> = ({ data }) => {
           ))}
         </tbody>
       </table>
+       ) : (
+        <div>Loading...</div>
+      )}
     </div>
   );
 };

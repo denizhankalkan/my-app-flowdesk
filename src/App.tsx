@@ -2,16 +2,23 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { setActiveTable } from './stores/actions';
-
+import styled from 'styled-components';
 import OneDayTrades from './components/OneDayTradesTable';
 import RecentTrades from './components/RecentTradesTable';
-import TickerTradesTable from './components/TickerTradesTable';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import backgroundImage from './asset/background.jpg';
+
+export const AppContainer = styled.div`
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+`;
 
 const App: React.FC = () => {
   const [currencyPair, setCurrencyPair] = useState('BTCUSDT');
   const [oneDayTrades, setOneDayTrades] = useState(null);
   const [recentTrades, setRecentTrades] = useState([]);
-  // const [tickerTrades, setTickerTrades] = useState([]);
 
     const dispatch = useDispatch();
     const activeTable = useSelector((state: any) => state.table.activeTable);
@@ -34,38 +41,31 @@ const App: React.FC = () => {
     axios.get(`https://api.binance.com/api/v3/ticker/24hr?symbol=${currencyPair}`)
       .then(response => setOneDayTrades(response.data));
 
-    // axios.get(`https://api.binance.com/api/v3/ticker/price?symbol=${currencyPair}`)
-    //   .then(response => setOneDayTrades(response.data));
-
     return () => {
       ws.close();
     };
   }, [currencyPair]);
 
-// {{url}}/api/v3/ticker/price  => our URL ??? NEED ASK 
   return (
-    <div>
-      <h1>Binance Market Data</h1>
-
+    <AppContainer>
+     <Header />
       <select onChange={(e) => setCurrencyPair(e.target.value)} value={currencyPair}>
         <option value="BTCUSDT">BTCUSDT</option>
         <option value="ETHUSDT">ETHUSDT</option>
         <option value="XRPUSDT">XRPUSDT</option>
       </select>
 
-      {/* <TickerTradesTable data={fixedRecentTrades} /> */}
+      <select onChange={handleTableChange}>
+        <option value="RECENT_TRADES">Recent Trades</option>
+        <option value="TICKER_24H">24h Ticker Data</option> 
+      </select>
 
-    <select onChange={handleTableChange}>
-       <option value="TICKER_24H">24h Ticker Data</option>      
-       <option value="RECENT_TRADES">Recent Trades</option>
-    </select>
-
-     {activeTable === 'TICKER_24H' && <div>  <OneDayTrades data={oneDayTrades} /> </div>}
-     {activeTable === 'RECENT_TRADES' && <div> <RecentTrades data={recentTrades} /></div>}
-     {/* {activeTable === 'RECENT_TRADES' && <div><TickerTradesTable data={TickerTradesTable} /> </div> } */}
-
-    </div>
+      {activeTable === 'RECENT_TRADES' && recentTrades.length > 0 && <div key={currencyPair}> <RecentTrades data={recentTrades} /></div>}
+      {activeTable === 'TICKER_24H' && oneDayTrades !== null && <div> <OneDayTrades data={oneDayTrades} /> </div>}
+     <Footer />
+    </AppContainer>
   );
 };
 
 export default App;
+

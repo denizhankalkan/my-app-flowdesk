@@ -1,7 +1,7 @@
 import { SET_ACTIVE_TABLE } from './actionTypes';
 
 const initialState = {
-  activeTable: 'TICKER',
+  activeTable: 'RECENT_TRADES',
 };
 
 const tableReducer = (state = initialState, action: any) => {
