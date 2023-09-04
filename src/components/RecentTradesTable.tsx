@@ -9,14 +9,14 @@ interface Trade {
   isBuyerMaker: boolean;
   isBestMatch: boolean;
 }
-interface RecentTradesProps {
-  trades: Trade[];
+export interface RecentTradesProps {
+  data: Trade[];
 }
 
 type SortField = 'time' | 'price' | 'qty';
 
-const RecentTrades: React.FC<RecentTradesProps> = ({ trades }) => {
-  const [sortedTrades, setSortedTrades] = useState<Trade[]>([...trades]);
+const RecentTrades: React.FC<RecentTradesProps> = ({ data }) => {
+  const [sortedTrades, setSortedTrades] = useState<Trade[]>([...data]);
   const [sortField, setSortField] = useState<SortField | null>(null);
 
   const sortTrades = (field: SortField) => {
@@ -35,7 +35,7 @@ const RecentTrades: React.FC<RecentTradesProps> = ({ trades }) => {
         aValue = parseFloat(a[field]);
         bValue = parseFloat(b[field]);
       }
-  
+
       return aValue - bValue;
     });
   
