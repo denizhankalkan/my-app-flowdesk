@@ -15,7 +15,6 @@ const RecentTrades: React.FC<Props> = ({ pair }) => {
   }, [pair]);
 
   const sortTrades = (key: 'time' | 'price' | 'qty') => {
-    // Sorting logic here
   };
 
   return (

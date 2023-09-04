@@ -1,17 +1,16 @@
-// components/RecentTradesTable.tsx
 import React from 'react';
 
-interface Trade {
+interface Data {
   id: number;
   price: string;
   qty: string;
 }
 
 interface RecentTradesTableProps {
-  trades: Trade[];
+  data: Data[];
 }
 
-const RecentTradesTable: React.FC<RecentTradesTableProps> = ({ trades }) => {
+const RecentTradesTable: React.FC<RecentTradesTableProps> = ({ data }) => {
   return (
     <table>
       <thead>
@@ -22,11 +21,11 @@ const RecentTradesTable: React.FC<RecentTradesTableProps> = ({ trades }) => {
         </tr>
       </thead>
       <tbody>
-        {trades.map((trade) => (
-          <tr key={trade.id}>
-            <td>{trade.id}</td>
-            <td>{trade.price}</td>
-            <td>{trade.qty}</td>
+        {data.map((data) => (
+          <tr key={data.id}>
+            <td>{data.id}</td>
+            <td>{data.price}</td>
+            <td>{data.qty}</td>
           </tr>
         ))}
       </tbody>

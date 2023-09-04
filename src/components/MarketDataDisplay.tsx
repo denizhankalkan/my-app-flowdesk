@@ -117,17 +117,15 @@ const MarketDataDisplay: React.FC<Props> = ({ pair }) => {
       quantity: quantity
     }).then(() => {
         console.log("data success");
-        // Handle success
       })
       .catch(() => {
         console.error(error);
-        // Handle error
       });
 
 
   }, [pair]);
 
-  if (isLoading) {  // Check for loading state
+  if (isLoading) { 
     return <div>Loading...</div>;
   }
 
