@@ -1,30 +1,32 @@
 import styled from 'styled-components';
 import backgroundImage from '../asset/backgroundd.jpg'
 
-export const AppContainer = styled.div`
-  background-size: cover;
-  background-position: center;
-  min-height: 100vh;
-  background-image: url(${backgroundImage});
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-`;
+  export const AppContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+    background-image: url(${backgroundImage});
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  `;
 
-export const Table = styled.table`
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-`;
+  export const Table = styled.table`
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  `;
 
-export const Th = styled.th`
-  border: 1px solid #ccc;
-  padding: 10px;
-`;
+  export const Th = styled.th`
+    border: 1px solid #ccc;
+    padding: 10px;
+  `;
 
-export const Td = styled.td`
-  border: 1px solid #ccc;
-  padding: 10px;
-`;
+  export const Td = styled.td`
+    border: 1px solid #ccc;
+    padding: 10px;
+  `;
 
   export const Input = styled.input`
     padding: 10px;
@@ -35,11 +37,11 @@ export const Td = styled.td`
   `;
 
   export const Dropdown = styled.select`
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: calc(13.33% - 10px);
-  margin: 0 2rem 0 1rem
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: calc(13.33% - 10px);
+    margin: 0 2rem 0 1rem
   `;
 
   export const Button = styled.button`
@@ -60,6 +62,11 @@ export const Td = styled.td`
     justify-content: center;
     width: 100%;
     margin: 1rem .5rem 0 0;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
+    }
   `;
 
   export const StyledTable = styled.table`
@@ -80,6 +87,8 @@ export const Td = styled.td`
     th, td {
       color: #183153;
     }
+
+    background-color: white;
   `;
 
   export const SortIcon = styled.span`
@@ -97,4 +106,14 @@ export const Td = styled.td`
 
   export const TradesHeader = styled.h2`
     color: #183153;
+  `;
+
+  export const ContentContainer = styled.div`
+    flex: 1;  
+    overflow-y: auto;  
+    background-image: url(${backgroundImage});
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   `;

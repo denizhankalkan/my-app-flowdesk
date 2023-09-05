@@ -7,3 +7,6 @@ export default class TickerTradesTable extends Component {
     )
   }
 }
+
+
+// todo buy - sell tables could be add.
