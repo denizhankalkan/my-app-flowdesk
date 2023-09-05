@@ -117,4 +117,3 @@ import backgroundImage from '../asset/backgroundd.jpg'
     background-repeat: no-repeat;
     background-attachment: fixed;
   `;
-
