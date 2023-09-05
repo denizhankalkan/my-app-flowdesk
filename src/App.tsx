@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { setActiveTable } from './stores/actions';
-import styled from 'styled-components';
 import OneDayTrades from './components/OneDayTradesTable';
 import RecentTrades from './components/RecentTradesTable';
 import Header from './components/Header';
