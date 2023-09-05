@@ -1,1 +1,0 @@
-export const SET_ACTIVE_TABLE = 'SET_ACTIVE_TABLE';
