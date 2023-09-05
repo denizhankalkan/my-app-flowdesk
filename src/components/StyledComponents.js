@@ -1,9 +1,13 @@
 import styled from 'styled-components';
+import backgroundImage from '../asset/backgroundd.jpg'
 
 export const AppContainer = styled.div`
   background-size: cover;
   background-position: center;
   min-height: 100vh;
+  background-image: url(${backgroundImage});
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 `;
 
 export const Table = styled.table`
@@ -22,60 +26,75 @@ export const Td = styled.td`
   padding: 10px;
 `;
 
-export const Input = styled.input`
+  export const Input = styled.input`
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: calc(13.33% - 10px);
+    margin: 0 2rem 0 1rem
+  `;
+
+  export const Dropdown = styled.select`
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  margin-bottom: 10px;
-  width: calc(33.33% - 10px);
-`;
+  width: calc(13.33% - 10px);
+  margin: 0 2rem 0 1rem
+  `;
 
-export const Dropdown = styled.select`
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: 10px;
-  width: calc(33.33% - 10px);
-`;
+  export const Button = styled.button`
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    
+    &:hover {
+      background-color: #0056b3;
+    }
+  `;
 
-export const Button = styled.button`
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  
-  &:hover {
-    background-color: #0056b3;
-  }
-`;
+  export const InputContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 1rem .5rem 0 0;
+  `;
 
-export const InputContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 800px;
-  margin-top: 1rem;
-  margin-left: .5rem;
-`;
+  export const StyledTable = styled.table`
+    width: 100%;
+    border-collapse: collapse;
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
 
-export const StyledTable = styled.table`
-  width: 100%;
-  border-collapse: collapse;
-  th, td {
-    border: 1px solid black;
-    padding: 8px;
-    text-align: left;
-  }
-  th {
-    background-color: #f2f2f2;
-  }
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-`;
+    th, td {
+      color: #183153;
+    }
+  `;
 
-export const SortIcon = styled.span`
-  margin-left: 10px;
-`;
+  export const SortIcon = styled.span`
+    margin-left: 10px;
+  `;
+
+  export const SortIconWrapper = styled.span`
+    float: right;
+  `;
+
+  export const TableContainer = styled.span`
+    display: flex;
+    justify-content: center;
+  `;
+
+  export const TradesHeader = styled.h2`
+    color: #183153;
+  `;

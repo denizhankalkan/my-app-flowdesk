@@ -1,5 +1,7 @@
 import React, { useState,useEffect } from 'react';
-import { StyledTable, SortIcon } from './StyledComponents';
+import { StyledTable, SortIconWrapper, TradesHeader } from './StyledComponents';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSort } from '@fortawesome/free-solid-svg-icons';
 
 interface Trade {
   id: number;
@@ -50,19 +52,28 @@ const RecentTrades: React.FC<RecentTradesProps> = ({ data }) => {
   
   return (
     <div>
-      <h2>Recent Trades</h2>
+      <TradesHeader>Recent Trades</TradesHeader>
       {data ? (
       <StyledTable>
         <thead>
           <tr>
             <th>ID</th>
-            <th onClick={() => sortTrades('price')}>
-                Price
-                {sortField === 'price' && <SortIcon>⬆️⬇️</SortIcon>}
-              </th>
-            <th onClick={() => sortTrades('qty')}>Quantity</th>
+               <th onClick={() => sortTrades('price')}>Price
+                <SortIconWrapper>
+                  <FontAwesomeIcon icon={faSort} />
+                </SortIconWrapper>
+            </th>
+            <th onClick={() => sortTrades('qty')}>Quantity
+                <SortIconWrapper>
+                  <FontAwesomeIcon icon={faSort} />
+                </SortIconWrapper>
+            </th>
             <th>Quote Quantity</th>
-            <th onClick={() => sortTrades('time')}>Time</th>
+            <th onClick={() => sortTrades('time')}>Time
+                <SortIconWrapper>
+                 <FontAwesomeIcon icon={faSort} />
+                </SortIconWrapper>
+            </th>
             <th>Is Buyer Maker</th>
             <th>Is Best Match</th>
           </tr>

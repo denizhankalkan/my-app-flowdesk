@@ -8,7 +8,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import backgroundImage from './asset/background.jpg';
 import { currencyPairs } from './configs/currencyPairs';
-import { AppContainer, Input, Dropdown, Button, InputContainer } from './components/StyledComponents';
+import { AppContainer, Input, Dropdown, TableContainer, InputContainer } from './components/StyledComponents';
 
 const App: React.FC = () => {
   const [currencyPair, setCurrencyPair] = useState('BTCUSDT');
@@ -50,6 +50,10 @@ const App: React.FC = () => {
         pair.label.toLowerCase().includes(searchTerm.toLowerCase())
       )
     );
+
+    if (filteredPairs.length > 0) {
+      setCurrencyPair(filteredPairs[0].value);
+    }
   }, [searchTerm]);
 
   return (
@@ -74,13 +78,13 @@ const App: React.FC = () => {
         <option value="TICKER_24H">24h Ticker Data</option> 
       </Dropdown>
       </InputContainer>
-
-      {activeTable === 'RECENT_TRADES' && recentTrades.length > 0 && <div key={currencyPair}> <RecentTrades data={recentTrades} /></div>}
-      {activeTable === 'TICKER_24H' && oneDayTrades !== null && <div> <OneDayTrades data={oneDayTrades} /> </div>}
+      <TableContainer>
+        {activeTable === 'RECENT_TRADES' && recentTrades.length > 0 && <div key={currencyPair}> <RecentTrades data={recentTrades} /></div>}
+        {activeTable === 'TICKER_24H' && oneDayTrades !== null && <div> <OneDayTrades data={oneDayTrades} /> </div>}
+      </TableContainer>
      <Footer />
     </AppContainer>
   );
 };
 
 export default App;
-
