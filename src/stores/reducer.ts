@@ -3,7 +3,6 @@ import { SET_ACTIVE_TABLE } from './actionTypes';
 const initialState = {
   activeTable: 'RECENT_TRADES',
 };
-
 const tableReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case SET_ACTIVE_TABLE:

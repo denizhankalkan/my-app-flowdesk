@@ -7,4 +7,3 @@ export const currencyPairs = [
     { label: 'DOGE / USDT', value: 'DOGEUSDT' },
     { label: 'Ripple / USDT', value: 'XRPUSDT' },
 ];
-  
