@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBtc } from '@fortawesome/free-brands-svg-icons';
 
-
-
 const BitcoinValue: React.FC = () => {
   const [bitcoinValue, setBitcoinValue] = useState(null);
 

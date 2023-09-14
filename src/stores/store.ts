@@ -5,6 +5,6 @@ const store = configureStore({
     reducer: {
         table: tableReducer,
     }
-  })
+})
 
-  export default store;
+export default store;

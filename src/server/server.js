@@ -20,5 +20,4 @@ wss.on('connection', (ws) => {
       ws.send(JSON.stringify(data));
     }
   });
-  
 });

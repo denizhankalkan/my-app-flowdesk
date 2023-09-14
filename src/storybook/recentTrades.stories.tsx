@@ -8,7 +8,6 @@ export default {
 } as Meta;
 
 const Template: StoryFn<RecentTradesProps> = (args) => <RecentTrades {...args} />;
-
 export const Default = Template.bind({});
 Default.args = {
   data: [
