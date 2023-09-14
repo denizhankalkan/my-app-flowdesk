@@ -25,7 +25,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const ws = new WebSocket(`wss://stream.binance.com:9443/ws/${currencyPair.toLowerCase()}@ticker`);
-   
+    
     ws.onmessage = (message) => {
       const data = JSON.parse(message.data);
       console.log(data);

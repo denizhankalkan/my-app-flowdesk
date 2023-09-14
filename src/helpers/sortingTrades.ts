@@ -12,18 +12,25 @@ interface Trade {
 
 export const sortingTrades = (trades: Trade[], field: SortField, currentField: SortField | null) => {
   if (currentField === field) {
-    return [...trades.reverse()];
+    return [...trades].reverse();
   }
 
   const sorted = [...trades].sort((a, b) => {
-    let aValue: number, bValue: number;
+    let aValue: number | string, bValue: number | string;
 
     if (field === 'time') {
-      aValue = a[field];
-      bValue = b[field];
+      aValue = a.time;
+      bValue = b.time;
     } else {
       aValue = parseFloat(a[field]);
       bValue = parseFloat(b[field]);
+    }
+
+    if (typeof aValue === 'undefined' || isNaN(aValue)) {
+      return 1; 
+    }
+    if (typeof bValue === 'undefined' || isNaN(bValue)) {
+      return -1; 
     }
 
     return aValue - bValue;
