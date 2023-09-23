@@ -6,8 +6,17 @@ import OneDayTrades from './components/OneDayTradesTable';
 import RecentTrades from './components/RecentTradesTable';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Overview from './components/shared/overview';
 import { currencyPairs } from './configs/currencyPairs';
-import { AppContainer, Input, Dropdown, TableContainer, InputContainer, ContentContainer } from './components/StyledComponents';
+import { 
+  AppContainer, 
+  Input, 
+  Dropdown, 
+  TableContainer, 
+  InputContainer, 
+  ContentContainer, 
+  FlexContainer 
+} from './components/StyledComponents';
 
 const App: React.FC = () => {
   const [currencyPair, setCurrencyPair] = useState('BTCUSDT');
@@ -76,10 +85,17 @@ const App: React.FC = () => {
           <option value="TICKER_24H">24h Ticker Data</option> 
         </Dropdown>
       </InputContainer>
+
+      <FlexContainer>
+
+    
       <TableContainer>
         {activeTable === 'RECENT_TRADES' && recentTrades.length > 0 && <div key={currencyPair}> <RecentTrades data={recentTrades} /></div>}
         {activeTable === 'TICKER_24H' && oneDayTrades !== null && <div> <OneDayTrades data={oneDayTrades} /> </div>}
       </TableContainer>
+
+      <Overview />
+      </FlexContainer>
       </ContentContainer>
      <Footer />
     </AppContainer>

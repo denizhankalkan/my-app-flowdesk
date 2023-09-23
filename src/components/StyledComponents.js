@@ -102,6 +102,7 @@ import backgroundImage from '../asset/backgroundd.jpg'
   export const TableContainer = styled.span`
     display: flex;
     justify-content: center;
+    margin-left: 10rem;
   `;
 
   export const TradesHeader = styled.h2`
@@ -116,4 +117,13 @@ import backgroundImage from '../asset/backgroundd.jpg'
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
+  `;
+
+  export const FlexContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
   `;
