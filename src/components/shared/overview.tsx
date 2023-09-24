@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { faBtc, faEthereum, faGg } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Container = styled.div`
   width: 300px;
@@ -26,11 +28,12 @@ const CryptoItem = styled.div`
 interface CryptoProps {
   name: string;
   symbol: string;
+  icon: any;
 }
 
-const Crypto: React.FC<CryptoProps> = ({ name, symbol }) => (
+const Crypto: React.FC<CryptoProps> = ({ name, symbol, icon }) => (
   <CryptoItem>
-    {name} ({symbol})
+    {name} ({symbol}) {icon}
   </CryptoItem>
 );
 
@@ -38,9 +41,9 @@ const Overview: React.FC = () => {
   return (
     <Container>
       <Header>Most Profitable</Header>
-      <Crypto name="Bitcoin" symbol="BTC" />
-      <Crypto name="Ethereum" symbol="ETH" />
-      <Crypto name="Cardano" symbol="ADA" />
+      <Crypto name="Bitcoin" symbol="BTC" icon={<FontAwesomeIcon icon={faBtc} fade style={{color: "#0059b3"}} /> } />
+      <Crypto name="Ethereum" symbol="ETH" icon={<FontAwesomeIcon icon={faEthereum} fade style={{color: "#0059b3"}} /> }/>
+      <Crypto name="Cardano" symbol="ADA" icon={<FontAwesomeIcon icon={faGg} fade style={{color: "#0059b3"}} /> }/>
     </Container>
   );
 };

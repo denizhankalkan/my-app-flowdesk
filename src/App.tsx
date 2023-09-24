@@ -87,14 +87,11 @@ const App: React.FC = () => {
       </InputContainer>
 
       <FlexContainer>
-
-    
-      <TableContainer>
-        {activeTable === 'RECENT_TRADES' && recentTrades.length > 0 && <div key={currencyPair}> <RecentTrades data={recentTrades} /></div>}
-        {activeTable === 'TICKER_24H' && oneDayTrades !== null && <div> <OneDayTrades data={oneDayTrades} /> </div>}
-      </TableContainer>
-
-      <Overview />
+        <TableContainer>
+          {activeTable === 'RECENT_TRADES' && recentTrades.length > 0 && <div key={currencyPair}> <RecentTrades data={recentTrades} /></div>}
+          {activeTable === 'TICKER_24H' && oneDayTrades !== null && <div> <OneDayTrades data={oneDayTrades} /> </div>}
+        </TableContainer>
+        <Overview />
       </FlexContainer>
       </ContentContainer>
      <Footer />
