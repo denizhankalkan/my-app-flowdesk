@@ -15,7 +15,7 @@ Real-time Recent Trades table
 Search and Filter currency pairs
 Real-time Bitcoin value on the header
 Fully Responsive
-End-to-End testing
+End-to-End testing with Cypress
 Unit tests using Jest
 
 ## Install dependencies
