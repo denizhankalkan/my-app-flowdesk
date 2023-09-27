@@ -17,6 +17,8 @@ import {
   ContentContainer, 
   FlexContainer 
 } from './components/StyledComponents';
+import { getRecentTrades, getTicker24Hr, initWebSocket } from './services/service';
+
 
 const App: React.FC = () => {
   const [currencyPair, setCurrencyPair] = useState('BTCUSDT');
@@ -33,23 +35,16 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    const ws = new WebSocket(`wss://stream.binance.com:9443/ws/${currencyPair.toLowerCase()}@ticker`);
-    
-    ws.onmessage = (message) => {
-      const data = JSON.parse(message.data);
+    const ws = initWebSocket(currencyPair, (data) => {
       console.log(data);
-    };
-   
-    axios.get(`https://api.binance.com/api/v3/trades?symbol=${currencyPair}&limit=20`)
-      .then(response => setRecentTrades(response.data));
-
-    axios.get(`https://api.binance.com/api/v3/ticker/24hr?symbol=${currencyPair}`)
-      .then(response => setOneDayTrades(response.data));
-
+    });
+  
+    getRecentTrades(currencyPair).then(setRecentTrades).catch(console.error);
+    getTicker24Hr(currencyPair).then(setOneDayTrades).catch(console.error);
+  
     return () => {
       ws.close();
     };
-
   }, [currencyPair]);
 
   useEffect(() => {
